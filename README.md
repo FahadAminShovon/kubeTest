@@ -1,19 +1,18 @@
-# ***Deployeing an App using kubernetes***
+# ***Deploying an App using kubernetes***
 
 Here we will deploy a react based front end app and flask based backend api in kubernetes(minikube).
 
-##  ***Summaray*** 
+##  ***Summary*** 
 ---
-in this project we will make a simple react front end app and a python-flask backend app.
 
-we will build two images of our react app and python flask app. upload them to docker hub. build two deployemt and service file for deploying our projects on minikube .
+We will build two docker images.One for our react app and another for flask based restapi app. Then we will upload them to docker hub. We need two deployment and service file for deploying our projects on minikube .
 
 code for this project is available [here](https://github.com/FahadAminShovon/kubeTest).
 
-react app will take a number as input and will send it to the python backend .
+This react app will take a number as input and will send it to the rest api endpoint. This endpoint will reverse the number and make a json response.
 ![Input image](images/input.png)
 
-on clicking the submit button the react app will send a post request with the input number
+By clicking the submit button in the react app will send a post request.
 
 ```js
     state = { 
@@ -34,7 +33,7 @@ on clicking the submit button the react app will send a post request with the in
 
 ```
 
-the flask backend will receive the number , reverse it and send it back to the front end 
+the api endpoint will receive the number , reverse it and send it back to the front end 
 
 *** python code ***
 
@@ -59,9 +58,9 @@ output will look like this
 
 ### ***step 1***
 ---
-***dockerize react app***
+***React App***
 
-create a docker file for react app
+Create a docker file for react app. Here we are using nginx as web server and reverse proxy.
 ```Docker 
  
 FROM node:11.10.0-alpine AS build-stage
@@ -86,9 +85,9 @@ COPY default.conf /etc/nginx/conf.d/
 EXPOSE 80
 ```
 
-***build and upload image***
+***Build and Upload image***
 
-run the command bellow to create an image and give it a tag with your docker hub username and your image name in this format
+Run the command bellow to create an image and give it a tag with your docker hub username and your image name in this format
 
 ***yourUserName/projectName:vX***
 
@@ -161,7 +160,7 @@ upload your image to docker hub registry
 
 ### step 3
 ---
-***create config files for react app***
+***create a deployment files for react app***
 
 configure the code below for your own image.
 we will create a yaml file for our front end deployment
@@ -188,10 +187,8 @@ spec:
             - containerPort: 80
 ```
 
-this is a configuration file for an deployement object .
 Deployment represents a set of multiple, identical [pods](https://kubernetes.io/docs/concepts/workloads/pods/pod/) . Deployement runs multiple replica of application and replaces or restarts any instances that fail or become unresponsive.
 
-deployment has template for pod we want to create and number of replicas we want. 
 
 ***apiVersion:*** which version of kubernetes api are we using. Different object may requiere different version api Version. apps/v1 is the most common API group. It includes functionality related to running applications on Kubernetes.
 
@@ -470,7 +467,7 @@ this part above in the config file works as a reverser proxy . everytime we send
 
 look carefully at the proxy_pass . the part consists of three parts
 * http (protocol)
-* 192.168.99.100 ( the ip of our minikube cluster)
+* 192.168.99.100 ( $minikube ip)
 * 31516 ( the nodeport where we exposed our flask app)
 
 
