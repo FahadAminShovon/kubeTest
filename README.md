@@ -1,4 +1,4 @@
-# ***Deploying an App using kubernetes***
+# ***Deploying  Full Stack Application in kubernetes***
 
 Here we will deploy a react based front end app and flask based backend api in kubernetes(minikube).
 
