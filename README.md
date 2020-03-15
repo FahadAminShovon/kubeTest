@@ -343,7 +343,7 @@ spec:
             - containerPort: 5000
 ```
 
-*** back-node-port.yaml***
+***back-node-port.yaml***
 ```yaml
 apiVersion: v1
 kind: Service
@@ -463,7 +463,7 @@ this part above in the config file works as a file server .
                 proxy_pass http://192.168.99.100:31516;
     }
 ```
-this part above in the config file works as a reverser proxy . everytime we send a request to ***reverser*** it redirects the request to  ***http://192.168.99.100:31516***
+this part above in the config file works as a reverse proxy . everytime we send a request to ***reverser*** it redirects the request to  ***http://192.168.99.100:31516***
 
 look carefully at the proxy_pass . the part consists of three parts
 * http (protocol)
