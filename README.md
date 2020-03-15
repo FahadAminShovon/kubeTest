@@ -373,10 +373,12 @@ now let's check our deploy list,pod list, service list . we should see something
 ![](images/backDeploy.png)
 
 ***pod***
+
 ![](images/podFrontEnd.png)
 ![](images/backEndPod.png)
 
 ***service***
+
 ![](images/service1.png)
 ![](images/backNode.png)
 
