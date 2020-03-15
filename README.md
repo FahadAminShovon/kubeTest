@@ -1,6 +1,6 @@
 # ***Deployeing an App using kubernetes***
 
-here we will deploy a containerized react front end app and a containerized python-flask backend app and make them communicate with each other.
+Here we will deploy a react based front end app and flask based backend api in kubernetes(minikube).
 
 ##  ***Summaray*** 
 ---
